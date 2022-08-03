@@ -1,1 +1,1 @@
-# ts-buddy
+# timesheet-buddy
