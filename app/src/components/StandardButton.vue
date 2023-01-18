@@ -1,5 +1,8 @@
 <template>
-  <button :class="['px-6', 'border-solid border-2', 'rounded-lg', color]">
+  <button
+    :class="['px-6', 'border-solid border-2', 'rounded-lg', color]"
+    :onclick="func"
+  >
     {{ text }}
   </button>
 </template>
@@ -12,6 +15,7 @@ export default defineComponent({
   props: {
     text: String,
     color: String,
+    func: Function,
   },
 });
 </script>

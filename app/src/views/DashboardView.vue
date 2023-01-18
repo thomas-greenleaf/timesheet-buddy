@@ -44,8 +44,7 @@ export default defineComponent({
     };
   },
   mounted() {
-    // const url = new URL("http://localhost:8081");
-    fetch("http://localhost:8081/faketimesheet")
+    fetch(this.$store.state.fastApiEnd + "/faketimesheet")
       .then((response) => response.json())
       .then((data) => (this.timesheet = data.timesheet));
   },

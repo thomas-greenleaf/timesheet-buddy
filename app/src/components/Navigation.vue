@@ -7,8 +7,13 @@
         </router-link>
       </div>
       <div class="px-8 flex space-x-4 justify-items-right">
-        <StdButton text="SIGN IN" color="bg-blue-400" />
-        <StdButton text="SIGN UP" color="bg-blue-700" />
+        <StdButton
+          v-if="!$auth0.isAuthenticated"
+          text="SIGN IN"
+          color="bg-blue-400"
+          :func="login"
+        />
+        <ProfileWidget userName="tgreenleaf" />
       </div>
     </nav>
   </header>
@@ -17,14 +22,25 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import StdButton from "@/components/StandardButton.vue";
+import ProfileWidget from "@/components/ProfileWidget.vue";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 export default defineComponent({
   name: "NavBar",
   props: {
-    msg: String,
+    loggedIn: Boolean,
   },
   components: {
     StdButton,
+    ProfileWidget,
+  },
+  setup() {
+    const auth0 = useAuth0();
+    return {
+      login: () => {
+        auth0.loginWithPopup();
+      },
+    };
   },
 });
 </script>
